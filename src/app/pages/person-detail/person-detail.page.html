@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ person?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div class="profile-photo" *ngIf="person">
+    <img *ngIf="person.profile_path" class="profile-photo" [src]="'https://image.tmdb.org/t/p/w500' + person.profile_path">
+    <img *ngIf="person.profile_path" class="profile-photo-effect" [src]="'https://image.tmdb.org/t/p/w500' + person.profile_path">
+  </div>
+
+  <div class="basic-data">
+    <h1>{{ person?.name }}</h1>
+    <p *ngIf="person?.birthday"><b>{{ person?.birthday | date:'dd/MM/yyyy' }} </b> <span *ngIf="person?.deathday"> ({{ person?.deathday | date:'dd/MM/yyyy' }})</span></p>
+    <p *ngIf="person?.place_of_birth">{{ person?.place_of_birth }}</p>  
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div class="biography" *ngIf="person?.biography">
+    <h1><ion-icon name="contact"></ion-icon> Biografía</h1>
+    <div>{{ person?.biography }}</div>
+  </div>
+
+  <div class="movies" *ngIf="person?.credits?.cast && person?.credits?.cast.length > 0">
+    <h1><ion-icon name="ios-film"></ion-icon> Filmografía</h1>
+    <ion-virtual-scroll [items]="person?.credits?.cast">
+      <div class="movie" *virtualItem="let item" (click)="onMovieDetail(item.id)">
+        <ion-icon class="arrow" name="arrow-forward"></ion-icon>
+        <div class="poster">
+          <img *ngIf="item.poster_path" class="poster" [src]="'https://image.tmdb.org/t/p/w500' + item.poster_path">
+          <img *ngIf="item.poster_path" class="poster-effect" [src]="'https://image.tmdb.org/t/p/w500' + item.poster_path">
+        </div>
+        <div class="data">
+          <div class="title">{{item.title }}</div>
+          <div class="year">{{item.release_date | date:'yyyy' }}</div>
+        </div>
+      </div>
+    </ion-virtual-scroll>
+  </div>
+
+</ion-content>

@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-searchbar [(ngModel)]="searchInput" placeholder="" [showCancelButton]="false" (ionInput)="onInput($event)" (ionClear)="onClear($event)"></ion-searchbar>    
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="searchType" (ionChange)="onSearchTypeChange()">
+      <ion-segment-button value="movies">Películas</ion-segment-button>
+      <ion-segment-button value="persons">Personas</ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- Movie results -->
+  <div class="results-flex" *ngIf="searchType === 'movies' && results && results.length > 0">
+    <div class="result" *ngFor="let movie of results" (click)="onMovieDetail(movie.id)">
+      <div class="poster">
+        <img *ngIf="movie.poster_path" class="poster" [src]="'https://image.tmdb.org/t/p/w185' + movie.poster_path">
+        <img *ngIf="movie.poster_path" class="poster-effect" [src]="'https://image.tmdb.org/t/p/w185' + movie.poster_path">
+      </div>
+      <div class="data">
+        <ion-icon class="arrow" name="arrow-forward"></ion-icon>
+        <div class="title">{{ movie.title }}</div>
+        <div class="subtitle">{{ movie.release_date | date:'yyyy' }}</div>
+        <div class="vote">
+          <div class="stars">
+            <ion-icon [name]="movie.vote_average >= 2 ? 'star' : movie.vote_average >= 1 ? 'star-half' : 'star-outline'"></ion-icon>
+            <ion-icon [name]="movie.vote_average >= 4 ? 'star' : movie.vote_average >= 3 ? 'star-half' : 'star-outline'"></ion-icon>
+            <ion-icon [name]="movie.vote_average >= 6 ? 'star' : movie.vote_average >= 5 ? 'star-half' : 'star-outline'"></ion-icon>
+            <ion-icon [name]="movie.vote_average >= 8 ? 'star' : movie.vote_average >= 7 ? 'star-half' : 'star-outline'"></ion-icon>
+            <ion-icon [name]="movie.vote_average >= 10 ? 'star' : movie.vote_average >= 9 ? 'star-half' : 'star-outline'"></ion-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Person results -->
+  <div class="results-flex" *ngIf="searchType == 'persons' && results && results.length > 0">
+    <div class="result" *ngFor="let person of results" (click)="onPersonDetail(person.id)">
+      <div class="poster">
+        <img *ngIf="person.profile_path" class="poster" [src]="'https://image.tmdb.org/t/p/w185' + person.profile_path">
+        <img *ngIf="person.profile_path" class="poster-effect" [src]="'https://image.tmdb.org/t/p/w185' + person.profile_path">
+      </div>
+      <div class="data">
+        <ion-icon class="arrow" name="arrow-forward"></ion-icon>
+        <div class="title">{{ person.name }}</div>
+        <div class="subtitle" *ngIf="person?.known_for?.length > 0">
+          <small>Películas destacadas:</small><br>
+          <span *ngFor="let m of person.known_for; let last = last">
+            <span *ngIf="m.title">{{ m.title }}<span *ngIf="!last">, </span></span> <!-- ignore tv shows -->
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-fullscreen-message" *ngIf="results && results.length == 0">
+    No se han encontrado <span *ngIf="searchType === 'movies'">películas</span><span *ngIf="searchType == 'persons'">actores</span>
+  </div>
+  <div class="recognizer-box" *ngIf="!results && searchType == 'persons'">
+    <p>Sube una foto y buscaremos las celebridades que aparecen en ella</p>
+    <app-celebrity-recognizer (recognized)="onRecognized($event)"></app-celebrity-recognizer>
+  </div>
+</ion-content>

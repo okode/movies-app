@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ movie?.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div class="backdrop" *ngIf="movie">
+    <img *ngIf="movie.backdrop_path" [src]="'https://image.tmdb.org/t/p/original' + movie.backdrop_path">
+  </div>
+  <div class="backdrop-separator1"></div>
+  <div class="backdrop-separator2"></div>
+
+  <div class="poster" *ngIf="movie">
+    <img *ngIf="movie.poster_path" class="poster" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
+    <img *ngIf="movie.poster_path" class="poster-effect" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path">
+  </div>
+
+  <div class="movie-data" *ngIf="movie">
+    <div class="title">{{ movie.title }}</div>
+    <div class="year">{{ movie.release_date | date:'yyyy' }}</div>
+    <div class="vote">
+      <div class="text">
+        <b>{{ movie.vote_average }}</b>/10
+      </div>
+      <div class="stars">
+        <ion-icon [name]="movie.vote_average >= 2 ? 'star' : movie.vote_average >= 1 ? 'star-half' : 'star-outline'"></ion-icon>
+        <ion-icon [name]="movie.vote_average >= 4 ? 'star' : movie.vote_average >= 3 ? 'star-half' : 'star-outline'"></ion-icon>
+        <ion-icon [name]="movie.vote_average >= 6 ? 'star' : movie.vote_average >= 5 ? 'star-half' : 'star-outline'"></ion-icon>
+        <ion-icon [name]="movie.vote_average >= 8 ? 'star' : movie.vote_average >= 7 ? 'star-half' : 'star-outline'"></ion-icon>
+        <ion-icon [name]="movie.vote_average >= 10 ? 'star' : movie.vote_average >= 9 ? 'star-half' : 'star-outline'"></ion-icon>
+      </div>
+      <div class="count">{{ movie.vote_count }} votos</div>
+    </div>
+
+    <div class="overview">{{ movie.overview }}</div>
+
+    <div class="duration" *ngIf="movie && movie.runtime">
+      <div class="label"><ion-icon name="md-time"></ion-icon>Duración</div>
+      <div class="value">{{ movie.runtime }} mins</div>
+    </div>
+    <div class="genres" *ngIf="movie && movie.genres && movie.genres.length">
+      <div class="label"><ion-icon name="md-pricetag"></ion-icon>Géneros</div>
+      <div class="value"><span *ngFor="let genre of movie.genres; let last = last">{{ genre.name }}<span *ngIf="!last">, </span></span></div>
+    </div>
+
+    <div class="cast" *ngIf="movie && movie.credits && movie.credits.cast && movie.credits.cast.length">
+      <div class="label"><ion-icon name="md-people"></ion-icon>Reparto</div>
+      <div class="persons">
+        <div *ngFor="let a of movie.credits.cast; let index = index">
+          <div class="person" *ngIf="index < 15" [style.background-image]="a.profile_path ? 'url(https://image.tmdb.org/t/p/w500' + a.profile_path + ')' : ''" (click)="onPersonDetail(a.id)">
+            <div class="name">{{ a.name }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="companies" *ngIf="movie && movie.production_companies && movie.production_companies.length > 0">
+      <div class="company" *ngFor="let company of movie.production_companies">
+        <img *ngIf="company.logo_path" [src]="'https://image.tmdb.org/t/p/w200' + company.logo_path">
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,53 @@
+{
+  "cordova-plugin-whitelist": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-whitelist@1.3.3"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-device": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-device@2.0.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-splashscreen": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-splashscreen@5.0.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-ionic-webview": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ionic-webview@1.2.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-ionic-keyboard": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ionic-keyboard@2.1.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-fabric-plugin": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-fabric-plugin@1.1.14-dev"
+    },
+    "is_top_level": true,
+    "variables": {
+      "FABRIC_API_KEY": "PUT_HERE_YOUR_FABRIC_API_KEY",
+      "FABRIC_API_SECRET": "PUT_HERE_YOUR_FABRIC_API_SECRET"
+    }
+  }
+}

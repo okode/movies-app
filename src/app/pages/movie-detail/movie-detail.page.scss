@@ -1,0 +1,198 @@
+.toolbar-ios ion-title {
+  padding: 0 70px 1px;
+}
+.backdrop {
+  margin: -20px;
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+  background: #ddd;
+  img {
+    opacity: 1;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transform: scale(1.5);
+    position: absolute;
+  }
+}
+.backdrop-separator1 {
+  width: 0;
+  height: 0;
+  z-index: 9999;
+  position: absolute;
+  left: 0;
+  margin-top: calc(-120px + 20px + 1px);
+  border-top: 120px solid transparent;
+  border-left: 100vw solid white;
+}
+.backdrop-separator2 {
+  width: 0;
+  height: 0;
+  z-index: 9998;
+  position: absolute;
+  left: 0;
+  margin-top: calc(-240px + 20px + 1px);
+  border-top: 240px solid transparent;
+  border-left: 100vw solid rgba(255, 255, 255, 0.4);
+}
+div.poster {
+  position: absolute;
+  z-index: 99999;
+  margin-top: -200px;
+  left: 0px;
+  margin-left: calc(50% - (170px / 2));
+  width: 170px;
+  height: 230px;
+  background: #eee;
+  border-radius: 6px;
+  img.poster, img.poster-effect {
+    width: 170px;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 6px;
+    position: relative;
+    z-index: 9999;
+    border: 3px solid rgba(255, 255, 255, 1);
+    -webkit-transform: translateZ(0);
+    -webkit-perspective: 1000;
+    -webkit-backface-visibility: hidden;
+    &.poster-effect {
+      z-index: 999;
+      margin-top: -225px;
+      opacity: 0.4;
+      filter: blur(4px);
+      transform: scale(0.9) translateZ(0);
+    }
+  }
+}
+.movie-data {
+  margin-top: 50px;
+  .title {
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    font-size: 32px;
+    line-height: 32px;
+    padding: 5px 0 15px 0;
+  }
+  .year {
+    width: 100px;
+    color: #aaa;
+    font-size: 20px;
+    float: left;
+  }
+  .vote {
+    width: calc(100% - 100px);
+    float: right;
+    text-align: right;
+    .text {
+      float: right;
+      color: #aaa;
+      font-size: 13px;
+      b {
+        font-weight: 800;
+        font-size: 20px;
+        color: #000;
+      }
+    }
+    .stars {
+      float: right;
+      font-size: 22px;
+      margin-right: 10px;
+      ion-icon {
+        color: #fbcd00;
+        line-height: 0px;
+      }
+    }
+    .count {
+      width: 100%;
+      clear: both;
+      color: #ccc;
+    }
+  }
+  .overview {
+    margin-top: 50px;
+    letter-spacing: -0.03em;
+    font-size: 18px;
+    line-height: 21px;
+    padding: 15px 0 15px 0;
+    color: #888;
+    font-weight: 100;
+  }
+  .duration, .genres, .cast {
+    font-size: 16px;
+    line-height: 18px;
+    padding: 15px 0 5px 0;
+    .label {
+      color: #aaa;
+      padding: 4px 0 4px 24px;
+      font-weight: 100;
+      ion-icon {
+        position: absolute;
+        margin-top: 1px;
+        margin-left: -24px;
+      }
+    }
+    .value {
+      color: #444;
+      font-weight: 400;
+    }
+  }
+  .cast {
+    position: relative;
+    height: 190px;
+    .persons {
+      display: flex;
+      overflow-y: scroll;
+      position: absolute;
+      left: -16px;
+      right: -16px;
+      & > div:first-child {
+        padding-left: 16px;
+      }
+      & > div:last-child {
+        padding-right: 6px;
+      }
+      .person {
+        width: 90px;
+        height: 130px;
+        background-size: cover;
+        background-position: center ;
+        border-radius: 6px;
+        margin: 5px 10px 20px 0;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        background-color: #eee;
+        .name {
+          color: white;
+          font-size: 14px;
+          line-height: 14px;
+          padding: 4px;
+          font-weight: 600;
+          text-shadow: 1px 1px rgba(0,0,0,0.3), -1px -1px rgba(0,0,0,0.3), -1px 1px rgba(0,0,0,0.3), 1px -1px rgba(0,0,0,0.3);
+        }
+      }
+    }
+  }
+  .companies {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-top: 1px solid #eee;
+    margin-top: 25px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    .company {
+      img {
+        object-fit: contain;
+        max-width: 120px;
+        margin: 10px 20px;
+        height: 50px;
+        opacity: 0.4;
+        filter: grayscale(100%);
+      }
+    }
+  }
+}
