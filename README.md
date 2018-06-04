@@ -1,7 +1,7 @@
 Movies App
 ==========
 
-| ![](doc/shot01.png?raw=true "Okode Movies App - List") | ![](doc/shot02.png?raw=true "Okode Movies App - Detail") |
+![](doc/shot01.png?raw=true "Okode Movies App - List") ![](doc/shot02.png?raw=true "Okode Movies App - Detail")
 
 Requirements
 ------------
