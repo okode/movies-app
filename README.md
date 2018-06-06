@@ -25,6 +25,19 @@ Created with Ionic CLI version 4.0.0 RC:
 $ ionic start i4demo blank --type=angular --cordova
 ```
 
+Create your The Movie Database API Key
+--------------------------------------
+
+* Go to https://themoviedb.org and create your API KEY.
+* Set your key in the file `src/app/services/tmdb.service.ts`:
+
+```
+  private readonly params = {
+    api_key: 'PUT_HERE_YOUR_TMDB_API_KEY',
+    language: 'PUT_HERE_YOUR DESIRED_LANGUAGE' // en-US, es-ES, ...
+  };
+```
+
 Preparing
 ---------
 
